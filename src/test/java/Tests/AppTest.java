@@ -1,16 +1,13 @@
 package Tests;
 
 import Config.Hooks;
-import Config.MobileDriverContext;
-import PageObjectsImplementation.Android.PrivacyPolicyPage;
-import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
 public class AppTest extends Hooks {
 
 
-    PrivacyPolicyPage privacyPolicyPage;
+
 
     public void LaunchApp() throws MalformedURLException {
 
