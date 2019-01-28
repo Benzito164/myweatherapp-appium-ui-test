@@ -17,7 +17,7 @@ public class LocationPageObjects {
 
     @CacheLookup
     @AndroidFindBy(id = "gdpr_intro_text")
-    @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
+    @iOSFindBy(accessibility = "locationSearchButton")
     @SelendroidFindBy(id = "nux_url")
     public MobileElement searchButton;
 
@@ -29,13 +29,13 @@ public class LocationPageObjects {
 
     @CacheLookup
     @AndroidFindBy(id = "gdpr_intro_text")
-    @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
+    @iOSFindBy(accessibility = "Cancel")
     @SelendroidFindBy(id = "nux_url")
     public MobileElement uiSearchCancelButton;
 
     @CacheLookup
     @AndroidFindBy(id = "gdpr_intro_text")
-    @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
+    @iOSFindBy(accessibility = "Location")
     @SelendroidFindBy(id = "nux_url")
     public MobileElement uiSearchLocationTextfield;
 
