@@ -18,13 +18,13 @@ Feature: Add Location
 
 
   Scenario: User tries to add an already existing location
-         Given I add "London, uk" as a location
-         And  I add "London, uk" as a location
+         Given I add "London, UK" as a location
+         And  I add "London, UK" as a location
          Then I should see a pop up telling me the location is already added
 
 
   Scenario: User taps on an added location
-    Given I add "London, uk" as a location
+    Given I add "London, UK" as a location
     When  I tap on the forecast information for "London"
     Then  The weather information for "London" should be displayed above
 

@@ -41,13 +41,13 @@ public class LocationPageObjects {
 
     @CacheLookup
     @AndroidFindBy(id = "gdpr_intro_text")
-    @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
+    @iOSFindBy(xpath = ".//*[@name='textLabelIndentifier']")
     @SelendroidFindBy(id = "nux_url")
     public List<MobileElement> uiLocationResultTable;
 
     @CacheLookup
     @AndroidFindBy(id = "gdpr_intro_text")
-    @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
+    @iOSFindBy(xpath = ".//*[@name='locationLabelIdentifier']")
     @SelendroidFindBy(id = "nux_url")
     public MobileElement headerWeatherViewLocationName;
 
@@ -58,7 +58,7 @@ public class LocationPageObjects {
     public MobileElement uiPopUp;
 
     @CacheLookup
-    @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
+    @iOSFindBy(accessibility = "weatherCellid")
     public List<MobileElement> weatherInformation;
 
 

@@ -4,12 +4,17 @@ import PageObjects.LocationPageObjects;
 import PageObjectsImplementation.HelperMethods;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.LongPressOptions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
 import java.util.List;
+
+import static io.appium.java_client.touch.offset.ElementOption.element;
 
 public class LocationPage extends HelperMethods {
 
@@ -24,9 +29,10 @@ public class LocationPage extends HelperMethods {
     public void addLocation(String location ){
         waitForElement(locationPageObjects.searchButton).click();
         waitForElement(locationPageObjects.uiSearchLocationTextfield).sendKeys(location);
+        waitForElement(locationPageObjects.uiSearchLocationTextfield).sendKeys(" ");
         List<MobileElement> locationResults = locationPageObjects.uiLocationResultTable;
-        for (MobileElement locations :locationResults){
-            if (locations.getText().equals(location)){
+        for (MobileElement locations :locationPageObjects.uiLocationResultTable){
+            if (locations.getAttribute("label").equals(location)){
                 locations.click();
                 return;
             }
@@ -37,10 +43,12 @@ public class LocationPage extends HelperMethods {
 
     public void deleteLocation(String location){
         WebElement locationForecast = getWeatherInformation(location);
-        TouchActions action = new TouchActions(driver);
-        action.longPress(locationForecast);
-        action.release(locationForecast);
-        action.perform();
+        TouchAction action = new TouchAction(driver);
+        action.longPress(LongPressOptions.longPressOptions()
+                .withElement(element(locationForecast))
+                .withDuration(Duration.ofSeconds(4))).release().perform();
+
+
     }
 
     public void selectWeatherLocation(String location){
@@ -52,11 +60,17 @@ public class LocationPage extends HelperMethods {
         return waitForElement(locationPageObjects.headerWeatherViewLocationName).getText();
     }
 
-    public WebElement getWeatherInformation(String location){
+    public MobileElement getWeatherInformation(String location){
         for (MobileElement locationWeather : locationPageObjects.weatherInformation){
-            if (location.equals(locationWeather.getText())){
-                return locationWeather;
+            String weatherLocation = locationWeather.getAttribute("label");
+            try {
+                if ((location.contains(weatherLocation))){
+                    return locationWeather;
+                }
+            } catch (Exception ex) {
+                return null;
             }
+
         }
         return null;
     }
