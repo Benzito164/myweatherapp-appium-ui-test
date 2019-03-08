@@ -23,6 +23,18 @@ public class LocationPageObjects {
 
     @CacheLookup
     @AndroidFindBy(id = "gdpr_intro_text")
+    @iOSFindBy(accessibility = "restartButton")
+    @SelendroidFindBy(id = "nux_url")
+    public MobileElement restartIcon;
+
+    @CacheLookup
+    @AndroidFindBy(id = "gdpr_intro_text")
+    @iOSFindBy(accessibility = "Reset")
+    @SelendroidFindBy(id = "nux_url")
+    public MobileElement resetButton;
+
+    @CacheLookup
+    @AndroidFindBy(id = "gdpr_intro_text")
     @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
     @SelendroidFindBy(id = "nux_url")
     public MobileElement locationNameHeaderDisplay;
