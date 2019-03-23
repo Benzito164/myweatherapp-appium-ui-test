@@ -32,8 +32,6 @@ public class LocationPage extends HelperMethods {
         waitForElement(locationPageObjects.uiSearchLocationTextfield).sendKeys(location);
         waitForElement(locationPageObjects.uiSearchLocationTextfield).sendKeys(" ");
         for (MobileElement locations :locationPageObjects.uiLocationResultTable){
-            System.out.println(location);
-            System.out.println(locations.getAttribute("label"));
             if (locations.getAttribute("label").equals(location)){
                 locations.click();
                 break;
