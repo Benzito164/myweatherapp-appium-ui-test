@@ -57,7 +57,6 @@ public class TestRunner extends AbstractTestNGCucumberTests {
             Reporter.addScreenCaptureFromPath(imageName+".png");
         }
         new LocationPage(driver).resetApp();
-       // context.performAppActivity(AppState.Restart);
         System.out.println("AFTER");
 
     }
