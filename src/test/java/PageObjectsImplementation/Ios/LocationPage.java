@@ -1,5 +1,6 @@
 package PageObjectsImplementation.Ios;
 
+import Config.MobileDriverContext;
 import PageObjects.LocationPageObjects;
 import PageObjectsImplementation.HelperMethods;
 import io.appium.java_client.AppiumDriver;
@@ -30,15 +31,16 @@ public class LocationPage extends HelperMethods {
         waitForElement(locationPageObjects.searchButton).click();
         waitForElement(locationPageObjects.uiSearchLocationTextfield).sendKeys(location);
         waitForElement(locationPageObjects.uiSearchLocationTextfield).sendKeys(" ");
-        List<MobileElement> locationResults = locationPageObjects.uiLocationResultTable;
         for (MobileElement locations :locationPageObjects.uiLocationResultTable){
+            System.out.println(location);
+            System.out.println(locations.getAttribute("label"));
             if (locations.getAttribute("label").equals(location)){
                 locations.click();
-                return;
+                break;
             }
 
         }
-
+        waitForElement(locationPageObjects.addLocationButton).click();
     }
 
     public void deleteLocation(String location){
@@ -73,5 +75,16 @@ public class LocationPage extends HelperMethods {
 
         }
         return null;
+    }
+
+    public void resetApp(){
+        try {
+            waitForElement(locationPageObjects.restartIcon).click();
+            waitForElement(locationPageObjects.resetButton).click();
+        } catch (Exception error) {
+            waitForElement(locationPageObjects.uiSearchCancelButton).click();
+            waitForElement(locationPageObjects.restartIcon).click();
+            waitForElement(locationPageObjects.resetButton).click();
+        }
     }
 }
