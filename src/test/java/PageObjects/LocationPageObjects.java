@@ -35,6 +35,18 @@ public class LocationPageObjects {
 
     @CacheLookup
     @AndroidFindBy(id = "gdpr_intro_text")
+    @iOSFindBy(accessibility = "Add Location")
+    @SelendroidFindBy(id = "nux_url")
+    public MobileElement addLocationButton;
+
+    @CacheLookup
+    @AndroidFindBy(id = "gdpr_intro_text")
+    @iOSFindBy(accessibility = "Dismiss")
+    @SelendroidFindBy(id = "nux_url")
+    public MobileElement dismissLocationButton;
+
+    @CacheLookup
+    @AndroidFindBy(id = "gdpr_intro_text")
     @iOSFindBy(accessibility = ".//*[@value='Site Address (URL)']")
     @SelendroidFindBy(id = "nux_url")
     public MobileElement locationNameHeaderDisplay;
