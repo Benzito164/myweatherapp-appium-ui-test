@@ -7,6 +7,7 @@ import Config.MobileDriverContext;
 import Config.MobileDriverContext.AppState;
 import PageObjectsImplementation.HelperMethods;
 
+import PageObjectsImplementation.Ios.LocationPage;
 import com.cucumber.listener.Reporter;
 import cucumber.api.CucumberOptions;
 import cucumber.api.Scenario;
@@ -16,6 +17,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 import org.testng.annotations.*;
 import java.io.File;
+
+import static Config.MobileDriverContext.driver;
 
 
 @CucumberOptions(
@@ -53,7 +56,8 @@ public class TestRunner extends AbstractTestNGCucumberTests {
             HelperMethods.takeScreenShot(imageName);
             Reporter.addScreenCaptureFromPath(imageName+".png");
         }
-        context.performAppActivity(AppState.Restart);
+        new LocationPage(driver).resetApp();
+       // context.performAppActivity(AppState.Restart);
         System.out.println("AFTER");
 
     }
